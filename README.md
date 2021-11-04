@@ -13,10 +13,10 @@ npm install
 
 ## Usage
 
-1. Add a Markdown file exported from Ulysses to the `/docs` directory. Make sure to name the file `in.md`.
+1. Add a Markdown file exported from Ulysses to the `{project_root}/docs` directory. Make sure to name the file `in.md`.
 1. Run `npm start`
 
-This should generate a file called `/docs/out.html`, the contents of which you can
+This should generate a file called `{project_root}/docs/out.html`, the contents of which you can
 copy and paste into a WordPress post.
 
 ### Code Blocks
@@ -29,7 +29,6 @@ This script will not work with indented code blocks. Please mark code blocks wit
     This will not 
     work.
 ```
-
 
 
 ````
@@ -55,14 +54,14 @@ const thing = require("foobar");
 ```
 
 The `@file:your_file_name` will get converted to a `data-enlighter-title` attribute so that the file path will show as the
-title of the code block. So the above will be rendered as follows.
+title of the code block. So the above will be rendered as follows.
 
 ```html
 <pre class="EnlighterJSRAW"
   data-enlighter-language="generic"
   data-enlighter-linenumbers="false"
   data-enlighter-group="a4396d38-4fe5-4b14-9d35-f0a2a57a7be0"
-  data-enlighter-title="path/to/my/file.ext" 
+  data-enlighter-title="src/foo/bar.js" 
 >
 const thing = require("foobar");
 
@@ -71,6 +70,7 @@ const thing = require("foobar");
 ```
 
 #### Line Highlights
+In a code block, each line marked with `**` will be added to the `data-enlighter-highlight` list attribute so that the line will be higlighted when rendered.
 
 ```
 let oldCode = lookNormal();
@@ -80,8 +80,6 @@ let oldCode = lookNormal();
 **  line.standOut();
 **});
 ```
-
-Each line marked with `**` will be added to the `data-enlighter-highlight` list attribute so that the line will be higlighted when rendered.
 
 The above code will render to the following.
 
