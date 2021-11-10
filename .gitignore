@@ -118,4 +118,4 @@ dist
 .pnp.*
 
 docs/*
-docs/!.gitkeep
+!docs/.gitkeep
