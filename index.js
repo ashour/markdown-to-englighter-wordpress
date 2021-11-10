@@ -5,6 +5,7 @@ const truncatedPreviewLengthInCharacters = 1000;
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 const converter = require("markdown-it")({
+  html: true,
   highlight: (str) => {
     const [withFileNameRemoved, fileName] =
       removeFileName(str);
