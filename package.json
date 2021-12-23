@@ -5,12 +5,17 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "dev": "jest --watch"
   },
   "author": "Mohammad Ashour",
   "license": "MIT",
   "dependencies": {
     "markdown-it": "^12.0.3",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "jest": "^27.4.5"
   }
 }
