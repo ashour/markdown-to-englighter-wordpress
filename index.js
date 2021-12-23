@@ -1,8 +1,10 @@
 const inputFilePath = "./docs/in.md";
 const outputFilePath = "./docs/out.html";
+const imagePlaceholderColor = "#ff6600";
 const truncatedPreviewLengthInCharacters = 1000;
 
 const fs = require("fs");
+const cheerio = require("cheerio");
 const removeFilename = require("./functions/removeFilename");
 const highlightedLines = require("./functions/highlightedLines");
 const removeHighlightMarkers = require("./functions/removeHighlightMarkers");
@@ -25,8 +27,21 @@ const converter = require("markdown-it")({
 });
 
 const markdown = fs.readFileSync(inputFilePath).toString();
+const renderedHtml = converter.render(markdown);
 
-const html = converter.render(markdown);
+const doc = cheerio.load(renderedHtml, null, false);
+
+doc("img").each((i, el) => {
+  const node = doc(el);
+  const src = node.attr("src");
+  node.replaceWith(
+    doc(
+      `<div><strong style="color: ${imagePlaceholderColor};">📸 ${src}</strong></div>`
+    )
+  );
+});
+
+const html = doc.root().html();
 
 console.log("HTML rendered successfully.\n");
 console.log(
