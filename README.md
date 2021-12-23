@@ -1,6 +1,6 @@
 # Markdown to Englighter WordPress Script
 
-This script will render a Markdown file to HTML, injecting special HTML attributes for the Englighter WordPress code plugin. 
+This script will render a Markdown file to HTML, injecting special HTML attributes for the Englighter WordPress code plugin.
 
 ## Installation
 
@@ -23,13 +23,10 @@ copy and paste into a WordPress post.
 
 This script will not work with indented code blocks. Please mark code blocks with ``` instead.
 
-
-
 ```
-    This will not 
+    This will not
     work.
 ```
-
 
 ````
 ```
@@ -45,6 +42,7 @@ This script assumes that you're using the Enlighter WordPress plugin for code hi
 You can add the following sugar to your Markdown for automatic conversion to Enlighter data attributes in the generated HTML.
 
 #### File Name as Title
+
 ```
 @file:src/foo/bar.js
 const thing = require("foobar");
@@ -56,11 +54,16 @@ The `@file:your_file_name` will get converted to a `data-enlighter-title` attrib
 title of the code block. So the above will be rendered as follows.
 
 ```html
-<pre class="EnlighterJSRAW"
+<pre
+  class="EnlighterJSRAW"
   data-enlighter-language="generic"
   data-enlighter-linenumbers="false"
-  data-enlighter-group="a4396d38-4fe5-4b14-9d35-f0a2a57a7be0" <!-- GUID --> 
-  data-enlighter-title="src/foo/bar.js" 
+  data-enlighter-group="a4396d38-4fe5-4b14-9d35-f0a2a57a7be0"
+  <!--
+  GUID
+  --
+>
+  data-enlighter-title="src/foo/bar.js"
 >
 const thing = require("foobar");
 
@@ -69,6 +72,7 @@ const thing = require("foobar");
 ```
 
 #### Line Highlights
+
 In a code block, each line marked with `**` will be added to the `data-enlighter-highlight` list attribute so that the line will be higlighted when rendered.
 
 ```
@@ -97,7 +101,21 @@ newCode.forEach(line => {
 </pre>
 ```
 
->  ✋🏽 _Heads up_ Each `**` will be replaced with an empty string, so make sure
+> ✋🏽 _Heads up_ Each `**` will be replaced with an empty string, so make sure
 > that your code indentation acts as if the `**`s don't exist at all.
+
+## Development and testing
+
+This script is unit-tested with Jest. To run all tests:
+
+```
+npm run test
+```
+
+To run Jest in watch mode:
+
+```
+npm run dev
+```
 
 -- Happy coding 🥸🤓
