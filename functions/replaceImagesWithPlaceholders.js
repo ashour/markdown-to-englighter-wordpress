@@ -9,7 +9,7 @@ function replaceImagesWithPlaceholders(html, highlightColor = "pink") {
     const src = node.attr("src");
 
     const alt = node.attr("alt");
-    const altReplacement = !alt || src.startsWith(alt) ? "" : ` (${alt})`;
+    const altReplacement = !alt || src === alt ? "" : ` (${alt})`;
 
     node.replaceWith(
       doc(

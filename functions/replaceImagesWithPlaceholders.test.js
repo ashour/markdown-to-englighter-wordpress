@@ -31,14 +31,12 @@ test("it keeps alt tag values in placeholders", () => {
 test("it ignores alt tag if it's the same as the file name", () => {
   const input = `
     <img src="foo.png" alt="foo.png">
-    <img src="bar.png" alt="bar">
   `;
 
   const output = replaceImagesWithPlaceholders(input);
 
   expect(output).toBe(`
     <div><strong style="color: pink;">📸 foo.png</strong></div>
-    <div><strong style="color: pink;">📸 bar.png</strong></div>
   `);
 });
 
