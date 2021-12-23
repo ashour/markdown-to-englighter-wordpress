@@ -107,7 +107,7 @@ newCode.forEach(line => {
 ### Images
 
 `<img>` tags will be replaced with a highlight placeholder to
-make images easier in your final WordPress post.
+make adding images in your final WordPress post easier.
 
 ```
 <img src="foo.png" alt="Picture of a foo">
