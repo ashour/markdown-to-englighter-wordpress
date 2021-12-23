@@ -28,7 +28,7 @@ test("it keeps alt tag values in placeholders", () => {
   `);
 });
 
-test("it ignores alt tag if it's the same as the file name", () => {
+test("it ignores alt tag if it's the same as the src", () => {
   const input = `
     <img src="foo.png" alt="foo.png">
   `;
