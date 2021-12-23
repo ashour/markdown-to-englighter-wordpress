@@ -4,11 +4,11 @@ const imagePlaceholderColor = "#ff6600";
 const truncatedPreviewLengthInCharacters = 1000;
 
 const fs = require("fs");
-const cheerio = require("cheerio");
 const removeFilename = require("./functions/removeFilename");
 const highlightedLines = require("./functions/highlightedLines");
 const removeHighlightMarkers = require("./functions/removeHighlightMarkers");
 const codeBlockTpl = require("./functions/codeBlockTpl");
+const replaceImagesWithPlaceholders = require("./functions/replaceImagesWithPlaceholders");
 
 const converter = require("markdown-it")({
   html: true,
@@ -29,19 +29,7 @@ const converter = require("markdown-it")({
 const markdown = fs.readFileSync(inputFilePath).toString();
 const renderedHtml = converter.render(markdown);
 
-const doc = cheerio.load(renderedHtml, null, false);
-
-doc("img").each((i, el) => {
-  const node = doc(el);
-  const src = node.attr("src");
-  node.replaceWith(
-    doc(
-      `<div><strong style="color: ${imagePlaceholderColor};">📸 ${src}</strong></div>`
-    )
-  );
-});
-
-const html = doc.root().html();
+const html = replaceImagesWithPlaceholders(renderedHtml, imagePlaceholderColor);
 
 console.log("HTML rendered successfully.\n");
 console.log(
