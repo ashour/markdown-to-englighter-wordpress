@@ -1,5 +1,6 @@
 const inputFilePath = "./docs/in.md";
 const outputFilePath = "./docs/out.html";
+const imagePlaceholderColor = "#ff6600";
 const truncatedPreviewLengthInCharacters = 1000;
 
 const fs = require("fs");
@@ -7,6 +8,7 @@ const removeFilename = require("./functions/removeFilename");
 const highlightedLines = require("./functions/highlightedLines");
 const removeHighlightMarkers = require("./functions/removeHighlightMarkers");
 const codeBlockTpl = require("./functions/codeBlockTpl");
+const replaceImagesWithPlaceholders = require("./functions/replaceImagesWithPlaceholders");
 
 const converter = require("markdown-it")({
   html: true,
@@ -25,8 +27,9 @@ const converter = require("markdown-it")({
 });
 
 const markdown = fs.readFileSync(inputFilePath).toString();
+const renderedHtml = converter.render(markdown);
 
-const html = converter.render(markdown);
+const html = replaceImagesWithPlaceholders(renderedHtml, imagePlaceholderColor);
 
 console.log("HTML rendered successfully.\n");
 console.log(

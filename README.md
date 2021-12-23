@@ -104,6 +104,25 @@ newCode.forEach(line => {
 > ✋🏽 _Heads up_ Each `**` will be replaced with an empty string, so make sure
 > that your code indentation acts as if the `**`s don't exist at all.
 
+### Images
+
+`<img>` tags will be replaced with a highlight placeholder to
+make images easier in your final WordPress post.
+
+```
+<img src="foo.png" alt="Picture of a foo">
+```
+
+...will render to...
+
+```
+<div><strong style="color: #ff6600;">📸 foo.png (Picture of a foo)</strong></div>
+```
+
+> ✋🏽 _Heads up_ An `alt` tag will not be rendered in the placeholder if its
+> value is exactly the same as the `src` e.g. `<img src="bar.png" alt="bar.png">`
+> will render to `<div><strong style="color: #ff6600;">📸 bar.png</strong></div>`.
+
 ## Development and testing
 
 This script is unit-tested with Jest. To run all tests:
